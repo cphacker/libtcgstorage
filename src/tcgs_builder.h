@@ -10,7 +10,7 @@
 #define _TCGS_BUILDER_H  
 
 #include "tcgs_types.h"
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 #include "tcgs_interface.h"
   
 typedef enum

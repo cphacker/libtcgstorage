@@ -9,7 +9,7 @@
 #ifndef _TCGS_INTERFACE_ATA_H
 #define _TCGS_INTERFACE_ATA_H
 
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 
 //definition of ATA interface descriptor is in platform-specific file
 extern TCGS_InterfaceDescriptor_t TCGS_ATA_InterfaceDescriptor;

@@ -15,7 +15,7 @@
 #include "libtcgstorage.h"
 #include "tcgs_types.h"
 #include "tcgs_interface.h"
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 #include "tcgs_builder.h"
 #include "tcgs_interface_encode.h"
 

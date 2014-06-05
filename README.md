@@ -3,7 +3,7 @@ libtcgstorage
 
 C library for manipulation of storage devices that supports implementation of TCG Storage Opal and Enterprise SSC.
 
-At the moment when this library was started, no open source solution for the target standards exists. So purposes of this development are stated as the following:
+Purposes of this development are the following:
 
 1. Implement library that provides complete support of TCG Storage protocol on the host side for reading and manipulation os TPer parameters
 2. Implement Linux-based Shadow MBR image with support of TCG Storage protocol
@@ -19,6 +19,6 @@ Implementation is based on the next specifications of TCG:
 6. [TCG Storage Opal Test Cases Specification Version 1.0](http://www.trustedcomputinggroup.org/resources/tcg_storage_opal_test_cases)
 7. [Storage Application Note: Encrypting Drives Compliant with Opal SSC, Version 1.0, Revision 1.0](http://www.trustedcomputinggroup.org/resources/storage_application_note_encrypting_drives_compliant_with_opal_ssc)
 
-This project is started as a very side one by its author who wants to share his knowledge of the subject. Feal free to use it for educational and personal needs only. Please contact the author if you want to use this code in commercial project.
+Feal free to use it for educational and personal needs only. Please contact the author if you want to use this code in commercial project.
 
 --artem

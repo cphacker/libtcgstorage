@@ -32,14 +32,15 @@ typedef struct
 void showUsage(Arguments_t *args)
 {
     printf(
-        "TCG Storage params -- get trusted drive parameters. (c) Artem Zankovich, 2012\n"\
+        "TCG Storage params -- get trusted drive parameters.\n"\
+        "(c) Artem Zankovich, 2012\n\n"\
         "%s [-h] [-i #type [-d #name] -c #command]\n"\
         "  -h, --help       show this help message\n"\
         "  -i, --interface  interface type. List supported interface types when omitted\n"\
         "  -d, --device     device name. List available devices for specified interface when omitted\n"\
         "  -c, --command    TCG Storage command to send on device\n",
         args->startedAs
-    );
+    );s
 }
 
 void listDevices(TCGS_Interface_t interface, Arguments_t *args)

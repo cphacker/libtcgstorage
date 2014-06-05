@@ -13,7 +13,7 @@
 
 #include "tcgs_config.h"
 #include "tcgs_types.h"
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 #include "tcgs_interface.h"
 
 /*****************************************************************************

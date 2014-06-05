@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-/// tcgs_stream.h
+/// tcgs_level0discovery.h
 ///
 /// Structures and types used in TCG commands payload   
 ///
@@ -136,5 +136,15 @@ typedef struct {
 	uint8		reserved1					:7;
     uint8		reserved2[7];
 } __attribute__((packed)) TCGS_Level0Discovery_FeatureEnterprise_t;
+
+typedef enum {
+    ENCODING_IS_INTEGER,    //set for integer values, byte value is considered otherwise
+    ENCODING_IS_SIGNED,     //set for signed integer values
+    ENCODING_REVERSED,      //set for byte values that are provided in reverse order
+    ENCODING_CONTROL,       //set for control tokens
+    ENCODING_OPTIMIZE_SIZE  //don't rely on provided length and try to select token of minimum length
+} TCGS_EncodingFlags_t;
+
+uint32 encode();
 
 #endif //_TCGS_STREAM_H  

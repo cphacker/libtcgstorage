@@ -9,7 +9,7 @@
 #ifndef TCGS_PARSER_H_
 #define TCGS_PARSER_H_
 
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 
 /*****************************************************************************
  * \brief Extracts the first Level 0 Discovery feature header from command

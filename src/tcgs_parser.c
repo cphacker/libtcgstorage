@@ -9,7 +9,7 @@
 #include <string.h>
 
 #include "tcgs_parser.h"
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 
 /*****************************************************************************
  * \brief Extracts the first Level 0 Discovery feature header from command

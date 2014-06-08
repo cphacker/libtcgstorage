@@ -10,7 +10,7 @@
 
 #include "tcgs_config.h"
 #include "tcgs_types.h"
-#include "tcgs_parser.h"
+#include "tcgs_level0discovery.h"
 #include "tcgs_interface.h"
 #include "tcgs_interface_encode.h"
 #include "tcgs_verbose.h"
@@ -27,7 +27,7 @@ TCGS_Level0Discovery_Header_t *TCGS_DecodeLevel0Discovery (void* data)
 		header->versionMajor = _swap16(header->versionMajor);
 		header->versionMinor = _swap16(header->versionMinor);
 	}
-    iter = TCGS_GetLevel0DiscoveryFirstFeatureHeader(header);
+	iter = TCGS_GetLevel0DiscoveryFirstFeatureHeader(header);
 	while (iter != NULL)
 	{
 		iter->code = _swap16(iter->code);
@@ -47,7 +47,7 @@ TCGS_Level0Discovery_Header_t *TCGS_DecodeLevel0Discovery (void* data)
 			break;
 		//TODO: add decoding for other features
 		}
-        iter = TCGS_GetLevel0DiscoveryNextFeatureHeader(header, iter);
+		iter = TCGS_GetLevel0DiscoveryNextFeatureHeader(header, iter);
 	}
 
 	return header;

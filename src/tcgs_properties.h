@@ -33,46 +33,46 @@ typedef struct TCGS_Properties_t {
  *
  * \returns STATUS_OK if initialization completes successfully, STATUS_ERROR otherwise
  */
-TCGS_Error_t TCGS_init_properties();
+TCGS_Error_t TCGS_InitProperties();
 
 /*
  * \brief Get current host properties list.
  *
  * \returns properties list
  */
-TCGS_Properties *TCGS_get_properties_host();
+TCGS_Properties *TCGS_GetPropertiesHost();
 
 /*
  * \brief Get a property value from a properties list. Property name is used as a search key.
  *
  * \returns property if it is found, NULL otherwise
  */
-TCGS_Property *TCGS_get_property_by_name(TCGS_Properties * const properties, const TCGS_Property_Name_t name);
+TCGS_Property *TCGS_GetPropertyByName(TCGS_Properties * const properties, const TCGS_Property_Name_t name);
 
 /*
  * \brief Adds new property into the properties list
  *
  * \returns STATUS_OK if append completes successfully, STATUS_ERROR otherwise
  */
-TCGS_Error_t TCGS_append_property(TCGS_Properties *properties, TCGS_Property *property);
+TCGS_Error_t TCGS_AppendProperty(TCGS_Properties *properties, TCGS_Property *property);
 
 /*
  * \brief Sets iterator to the first property in the list
  *
  * \returns the first property in the list, NULL if properties list is empty
  */
-TCGS_Property *TCGS_get_property_first(TCGS_Properties *properties);
+TCGS_Property *TCGS_GetPropertyFirst(TCGS_Properties *properties);
 
 /*
  * \brief Sets iterator to the next property in the list
  *
  * \returns current property in the list, NULL if there is no more properties in the list
  */
-TCGS_Property *TCGS_get_property_next(TCGS_Properties *properties);
+TCGS_Property *TCGS_GetPropertyNext(TCGS_Properties *properties);
 
 /*
  * \brief Destroy properties list
  */
-void TCGS_free_properties(TCGS_Properties *properties);
+void TCGS_FreeProperties(TCGS_Properties *properties);
 
 #endif //_TCGS_PROPERTIES_H

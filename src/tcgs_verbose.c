@@ -11,7 +11,6 @@
 
 #include "tcgs_config.h"
 #include "tcgs_level0discovery.h"
-#include "tcgs_parser.h"
 #include "tcgs_verbose.h"
 #include "tcgs_interface.h"
 

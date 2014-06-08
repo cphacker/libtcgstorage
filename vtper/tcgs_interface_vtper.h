@@ -9,7 +9,7 @@
 #ifndef _TCGS_INTERFACE_VIRTUAL_H
 #define _TCGS_INTERFACE_VIRTUAL_H
 
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 #include "tcgs_interface.h"
   
 extern TCGS_InterfaceDescriptor_t TCGS_VTper_InterfaceDescriptor;

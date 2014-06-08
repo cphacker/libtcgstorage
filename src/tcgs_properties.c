@@ -85,7 +85,7 @@ TCGS_Error_t properties_set_minimum(TCGS_Properties *properties)
 {
     int i;
 
-    TCGS_free_properties(properties);
+    TCGS_FreeProperties(properties);
 
     // initialise properties list with terminator
     properties->properties = callocate(sizeof(TCGS_Property));
@@ -108,7 +108,7 @@ TCGS_Error_t properties_set_minimum(TCGS_Properties *properties)
  *
  * \returns STATUS_OK if initialisation completes successfully, STATUS_ERROR otherwise
  */
-TCGS_Error_t TCGS_init_properties()
+TCGS_Error_t TCGS_InitProperties()
 {
 	properties_set_minimum(&properties_host);
 
@@ -120,7 +120,7 @@ TCGS_Error_t TCGS_init_properties()
  *
  * \returns properties list
  */
-TCGS_Properties *TCGS_get_properties_host()
+TCGS_Properties *TCGS_GetPropertiesHost()
 {
     return &properties_host;
 }
@@ -130,7 +130,7 @@ TCGS_Properties *TCGS_get_properties_host()
  *
  * \returns property if it is found, NULL otherwise
  */
-TCGS_Property *TCGS_get_property_by_name(TCGS_Properties * const properties, const TCGS_Property_Name_t name)
+TCGS_Property *TCGS_GetPropertyByName(TCGS_Properties * const properties, const TCGS_Property_Name_t name)
 {
     TCGS_Properties_Element *iterator;
     
@@ -150,7 +150,7 @@ TCGS_Property *TCGS_get_property_by_name(TCGS_Properties * const properties, con
  *
  * \returns STATUS_OK if append completes successfully, STATUS_ERROR otherwise
  */
-TCGS_Error_t TCGS_append_property(TCGS_Properties *properties, TCGS_Property *property)
+TCGS_Error_t TCGS_AppendProperty(TCGS_Properties *properties, TCGS_Property *property)
 {
     TCGS_Properties_Element *iterator;
     
@@ -174,7 +174,7 @@ TCGS_Error_t TCGS_append_property(TCGS_Properties *properties, TCGS_Property *pr
  *
  * \returns the first property in the list, NULL if properties list is empty
  */
-TCGS_Property *TCGS_get_property_first(TCGS_Properties *properties)
+TCGS_Property *TCGS_GetPropertyFirst(TCGS_Properties *properties)
 {
     properties_iterator_set_first((TCGS_Properties_Element**)&properties->iterator, properties);
     return properties_iterator_get_current(properties->iterator);
@@ -185,7 +185,7 @@ TCGS_Property *TCGS_get_property_first(TCGS_Properties *properties)
  *
  * \returns current property in the list, NULL if there is no more properties in the list
  */
-TCGS_Property *TCGS_get_property_next(TCGS_Properties *properties)
+TCGS_Property *TCGS_GetPropertyNext(TCGS_Properties *properties)
 {
     if (properties_iterator_check_last(properties->iterator)) {
         return NULL;
@@ -197,7 +197,7 @@ TCGS_Property *TCGS_get_property_next(TCGS_Properties *properties)
 /*
  * \brief Destroy properties
  */
-void TCGS_free_properties(TCGS_Properties *properties)
+void TCGS_FreeProperties(TCGS_Properties *properties)
 {
     TCGS_Properties_Element *element;
     properties_iterator_set_first((TCGS_Properties_Element**)&properties->iterator, properties);

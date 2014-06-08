@@ -40,7 +40,7 @@ void showUsage(Arguments_t *args)
         "  -d, --device     device name. List available devices for specified interface when omitted\n"\
         "  -c, --command    TCG Storage command to send on device\n",
         args->startedAs
-    );s
+    );
 }
 
 void listDevices(TCGS_Interface_t interface, Arguments_t *args)

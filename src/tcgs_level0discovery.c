@@ -1,14 +1,13 @@
 /////////////////////////////////////////////////////////////////////////////
-/// tcgs_parser.h
+/// tcgs_level0discovery.h
 ///
-/// Parser for responses of TPer
+/// Parser for Level0Discovery responces of TPer
 ///
 /// (c) Artem Zankovich, 2012
 /////////////////////////////////////////////////////////////////////////////
 
 #include <string.h>
 
-#include "tcgs_parser.h"
 #include "tcgs_level0discovery.h"
 
 /*****************************************************************************

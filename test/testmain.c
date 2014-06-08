@@ -25,9 +25,8 @@ extern void mock_assert(const int result, const char* const expression,
 #endif // UNIT_TESTING
 
 #include "libtcgstorage.h"
-#include "tcgs_stream.h"
+#include "tcgs_level0discovery.h"
 #include "tcgs_builder.h"
-#include "tcgs_parser.h"
 #include "tcgs_interface.h"
 #include "tcgs_interface_vtper.h"
 #include "tcgs_interface_encode.h"
@@ -98,26 +97,26 @@ void test_properties(void **state)
     TCGS_Property property_check = {"test", 1111};
     int count = 0;
 
-    assert_int_equal(TCGS_init_properties(), ERROR_SUCCESS);
+    assert_int_equal(TCGS_InitProperties(), ERROR_SUCCESS);
 
-    properties_host = TCGS_get_properties_host();
-    property = TCGS_get_property_by_name(properties_host, "test");
+    properties_host = TCGS_GetPropertiesHost();
+    property = TCGS_GetPropertyByName(properties_host, "test");
     assert_int_equal((int)property, (int)NULL);
-    TCGS_append_property(properties_host, &property_check);
+    TCGS_AppendProperty(properties_host, &property_check);
 
-    property = TCGS_get_property_first(properties_host);
+    property = TCGS_GetPropertyFirst(properties_host);
     while (property != NULL) {
         count++;
-        property = TCGS_get_property_next(properties_host);
+        property = TCGS_GetPropertyNext(properties_host);
     }
     assert_int_equal(count, properties_host->size);
 
-    property = TCGS_get_property_by_name(properties_host, "test");
+    property = TCGS_GetPropertyByName(properties_host, "test");
     assert_int_not_equal((int)property, (int)NULL);
     assert_string_equal("test", property->name);
     assert_int_equal(1111, property->value);
 
-    TCGS_free_properties(properties_host);
+    TCGS_FreeProperties(properties_host);
 }
 
 int main(int argc, char* argv[]) {

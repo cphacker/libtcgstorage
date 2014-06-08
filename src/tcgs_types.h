@@ -30,14 +30,16 @@ typedef enum
 typedef enum 
 {
 	ERROR_NONE,
-	ERROR_BAD_PARAMETER,        //unsupportes parameter of function
-	ERROR_OPENING_DEVICE,       //error opening device
-	ERROR_DEVICE_NOT_OPENED,    //device need to be opened before
-	ERROR_COMMAND_UNSUPPORTED,  //interface command is not supported
-	ERROR_PROTOCOL_UNSUPPORTED, //interface protocol is not supported
-	ERROR_IO_COMMAND,           //error sending interface IO command
-	ERROR_INVALID_INTERFACE_STATUS, //device returned invalid status
-	ERROR_INVALID_INTERFACE_ERROR,  //device returned invalid error code
+	ERROR_BAD_PARAMETER,				//unsupported parameter of function
+	ERROR_OPENING_DEVICE,				//error opening device
+	ERROR_DEVICE_NOT_OPENED,			//device need to be opened before
+	ERROR_COMMAND_UNSUPPORTED,			//interface command is not supported
+	ERROR_PROTOCOL_UNSUPPORTED,			//interface protocol is not supported
+	ERROR_IO_COMMAND,					//error sending interface IO command
+	ERROR_INVALID_INTERFACE_STATUS,		//device returned invalid status
+	ERROR_INVALID_INTERFACE_ERROR,		//device returned invalid error code
+	
+	ERROR_BUILDER_UNSUFFICIENT_BUFFER,	//no place in the buffer to generate data
 } TCGS_ErrorCode_t;
 
 

@@ -79,7 +79,8 @@ uint32* TCGS_GetSubPacketPayload(
  *
  *****************************************************************************/
 TCG_Error_t TCGS_EncodeUnsigned(
-	uint32	i
+    TCGS_SubPacket_t* subpacket,
+    uint32	i
 );
 
 /*****************************************************************************
@@ -95,21 +96,22 @@ TCG_Error_t TCGS_EncodeUnsigned(
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-uint32* TCGS_EncodeBytes(
+TCG_Error_t TCGS_EncodeBytes(
+    TCGS_SubPacket_t* subpacket,
 	uint8*	p,
 	size_t	size
 );
 
 typedef {
-	TOKEN_SL	= 0xF0,		//Start List
-	TOKEN_EL	= 0xF1,		//End List
-	TOKEN_SN	= 0xF2,		//Start Name
-	TOKEN_EN	= 0xF3,		//End Name
-	TOKEN_CALL	= 0xF8,		//Call
-	TOKEN_EOD	= 0xF9,		//End of Data
-	TOKEN_EOS	= 0xFA,		//End of session
-	TOKEN_ST	= 0xFB		//Start transaction
-	TOKEN_ET	= 0xFC,		//End transaction
+	TOKEN_SL	= 0xF0,		// Start List
+	TOKEN_EL	= 0xF1,		// End List
+	TOKEN_SN	= 0xF2,		// Start Name
+	TOKEN_EN	= 0xF3,		// End Name
+	TOKEN_CALL	= 0xF8,		// Call
+	TOKEN_EOD	= 0xF9,		// End of Data
+	TOKEN_EOS	= 0xFA,		// End of session
+	TOKEN_ST	= 0xFB		// Start transaction
+	TOKEN_ET	= 0xFC,		// End transaction
 	TOKEN_MT	= 0xFF,		// Empty atom
 } TCGS_Token_t;
 
@@ -125,7 +127,8 @@ typedef {
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-uint32* TCGS_EncodeControl(
+TCG_Error_t TCGS_EncodeControl(
+    TCGS_SubPacket_t* subpacket,
 	TCGS_ControlToken_t	c
 );
 

@@ -9,6 +9,7 @@
 #ifndef _TCGS_PACKET_H
 #define _TCGS_PACKET_H
 
+#include <stddef.h>
 #include "tcgs_types.h"
 
 // Level 0 Descriptors
@@ -62,7 +63,7 @@ TCGS_Error_t TCGS_InitSubPacket(
  * \return pointer to a memory buffer filled with payload content
  *
  *****************************************************************************/
-uint32* TCGS_GetSubPacketPayload(
+uint8* TCGS_GetSubPacketPayload(
 	TCGS_SubPacket_t* subpacket
 );
 
@@ -78,9 +79,27 @@ uint32* TCGS_GetSubPacketPayload(
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-TCG_Error_t TCGS_EncodeUnsigned(
+TCGS_Error_t TCGS_EncodeUnsigned(
     TCGS_SubPacket_t* subpacket,
     uint32	i
+);
+
+/*****************************************************************************
+ * \brief Encode UID
+ *
+ * \par The function encodes value of UID type in TCG stream format
+ *      and places it to the provided SubPacked buffer. Buffer boundary is checked
+ *      and an error is returned is there is no free space
+ *
+ * @param[inout]	subpacket		subpacket to place encoded value
+ * @param[in]		uid				uid to encode
+ *
+ * \return TCGS_Error_t with error status
+ *
+ *****************************************************************************/
+TCGS_Error_t TCGS_EncodeUid(
+    TCGS_SubPacket_t* subpacket,
+    uid_t	uid
 );
 
 /*****************************************************************************
@@ -96,13 +115,13 @@ TCG_Error_t TCGS_EncodeUnsigned(
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-TCG_Error_t TCGS_EncodeBytes(
+TCGS_Error_t TCGS_EncodeBytes(
     TCGS_SubPacket_t* subpacket,
 	uint8*	p,
 	size_t	size
 );
 
-typedef {
+typedef enum {
 	TOKEN_SL	= 0xF0,		// Start List
 	TOKEN_EL	= 0xF1,		// End List
 	TOKEN_SN	= 0xF2,		// Start Name
@@ -110,10 +129,10 @@ typedef {
 	TOKEN_CALL	= 0xF8,		// Call
 	TOKEN_EOD	= 0xF9,		// End of Data
 	TOKEN_EOS	= 0xFA,		// End of session
-	TOKEN_ST	= 0xFB		// Start transaction
+	TOKEN_ST	= 0xFB,		// Start transaction
 	TOKEN_ET	= 0xFC,		// End transaction
 	TOKEN_MT	= 0xFF,		// Empty atom
-} TCGS_Token_t;
+} TCGS_ControlToken_t;
 
 /*****************************************************************************
  * \brief Encode TCG control sequence
@@ -127,7 +146,7 @@ typedef {
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-TCG_Error_t TCGS_EncodeControl(
+TCGS_Error_t TCGS_EncodeControl(
     TCGS_SubPacket_t* subpacket,
 	TCGS_ControlToken_t	c
 );

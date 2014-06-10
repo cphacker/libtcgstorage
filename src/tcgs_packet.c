@@ -9,14 +9,16 @@
 #ifndef _TCGS_PACKET_C
 #define _TCGS_PACKET_C
 
+#include <string.h>
+#include <stdbool.h>
 #include "tcgs_types.h"
 #include "tcgs_packet.h"
 
 static void sync_subpacket_header(TCGS_SubPacket_t* subpacket)
 {
 	memset(subpacket->buffer, 0, sizeof(TCGS_SubPacket_Header_t));
-	(*((TCGS_SubPacket_Header_t*)subpacket->buffer))->kind = subpacket->kind;
-	(*((TCGS_SubPacket_Header_t*)subpacket->buffer))->length = subpacket->length;
+	((TCGS_SubPacket_Header_t*)(subpacket->buffer))->kind = subpacket->kind;
+	((TCGS_SubPacket_Header_t*)(subpacket->buffer))->length = subpacket->length;
 }
 
 /*****************************************************************************
@@ -46,10 +48,10 @@ TCGS_Error_t TCGS_InitSubPacket(
 
 	// Initialize SubPacket structure with default values
 	memset(subpacket, 0, sizeof(subpacket));
-	subpacket->kind   = SUBPACKET_DATA;
-	subpacket->size   = size;
-	subpacket->bufer  = payloadBuffer;
-	sybpacket->length = sizeof(TCGS_SubPacket_Header_t);
+	subpacket->kind		= SUBPACKET_DATA;
+	subpacket->size		= size;
+	subpacket->buffer	= payloadBuffer;
+	subpacket->length	= sizeof(TCGS_SubPacket_Header_t);
 
 	// Fill payload buffer with zeroes
 	memset(payloadBuffer, 0, size);
@@ -71,7 +73,7 @@ TCGS_Error_t TCGS_InitSubPacket(
  * \return pointer to a memory buffer filled with payload content
  *
  *****************************************************************************/
-uint32* TCGS_GetSubPacketPayload(
+uint8* TCGS_GetSubPacketPayload(
 	TCGS_SubPacket_t* subpacket
 )
 {
@@ -115,10 +117,10 @@ typedef struct
 
 typedef union
 {
-    TCGS_TinyAtom_t tiny;
-    TCGS_TinyAtom_t short;
-    TCGS_TinyAtom_t medium;
-    TCGS_TinyAtom_t long;    
+    TCGS_TinyAtom_t		tinyAtom;
+    TCGS_ShortAtom_t	shortAtom;
+    TCGS_MediumAtom_t	mediumAtom;
+    TCGS_LongAtom_t		longAtom;    
 } TCGS_TokenHeader_t;
 
 #define ATOM_HEADER_TINY_FLAG   (0x00)
@@ -147,7 +149,7 @@ static bool check_size(TCGS_SubPacket_t* subpacket, unsigned size)
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-TCG_Error_t TCGS_EncodeUnsigned(
+TCGS_Error_t TCGS_EncodeUnsigned(
     TCGS_SubPacket_t* subpacket,
     uint32	i
 )
@@ -180,6 +182,26 @@ TCG_Error_t TCGS_EncodeUnsigned(
 }
 
 /*****************************************************************************
+ * \brief Encode UID
+ *
+ * \par The function encodes value of UID type in TCG stream format
+ *      and places it to the provided SubPacked buffer. Buffer boundary is checked
+ *      and an error is returned is there is no free space
+ *
+ * @param[inout]	subpacket		subpacket to place encoded value
+ * @param[in]		uid				uid to encode
+ *
+ * \return TCGS_Error_t with error status
+ *
+ *****************************************************************************/
+TCGS_Error_t TCGS_EncodeUid(
+    TCGS_SubPacket_t* subpacket,
+    uid_t	uid
+)
+{
+	#error Implement me
+}
+/*****************************************************************************
  * \brief Encode byte sequence
  *
  * \par The function encodes byte sequence in TCG stream format and places it
@@ -192,7 +214,7 @@ TCG_Error_t TCGS_EncodeUnsigned(
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-TCG_Error_t TCGS_EncodeBytes(
+TCGS_Error_t TCGS_EncodeBytes(
     TCGS_SubPacket_t* subpacket,
 	uint8*	p,
 	size_t	size
@@ -213,7 +235,7 @@ TCG_Error_t TCGS_EncodeBytes(
  * \return TCGS_Error_t with error status
  *
  *****************************************************************************/
-TCG_Error_t TCGS_EncodeControl(
+TCGS_Error_t TCGS_EncodeControl(
     TCGS_SubPacket_t* subpacket,
 	TCGS_ControlToken_t	c
 )
@@ -222,7 +244,7 @@ TCG_Error_t TCGS_EncodeControl(
     {
         RETURN_ERROR(ERROR_BUILDER, ERROR_BUILDER_UNSUFFICIENT_BUFFER);
     }
-    *((uint8*)(subpacket->buffer + subpacket->length))->data = (uint8)c;
+    *((uint8*)(subpacket->buffer + subpacket->length)) = (uint8)c;
     subpacket->length += 1;
 
     return ERROR_SUCCESS;

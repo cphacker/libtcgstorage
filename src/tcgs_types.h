@@ -9,10 +9,12 @@
 #ifndef _TCGS_TYPES_H
 #define _TCGS_TYPES_H
 
-#define uint8  unsigned char 
-#define uint16 unsigned short
-#define uint32 unsigned int
-#define uint64 unsigned long long
+typedef unsigned char		uint8;
+typedef unsigned short		uint16;
+typedef unsigned int		uint32;
+typedef unsigned long long	uint64;
+typedef uint64				uid_t;
+
 //#define bool unsigned char
 #define FALSE  (0)
 #define TRUE   (!FALSE)
